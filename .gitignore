@@ -1,0 +1,5 @@
+*.exe
+t?.*
+.vscode
+wkn.cpp
+*.txt
