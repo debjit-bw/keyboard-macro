@@ -8,6 +8,7 @@ map<string, wstring> iostrings()
     iolist["mysite"] = L"https://example.com";
     iolist["scrt"] = L"Some Secret Content";
     iolist["2mail"] = L"MySecondMailAddress@example.com";
+    iolist["address"] = L"my home address";
 
     return iolist;
 }

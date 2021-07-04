@@ -1,4 +1,5 @@
 #include "headers\\tree.h"
+#include "headers\self.h"
 
 using namespace std;
 
@@ -48,8 +49,7 @@ node *map_create(map<string, wstring> iolist)
                 latest_node = latest_node->_dir[key[i]];
             }
 
-            if (i < key.length())
-                latest_node->_str = val;
+            latest_node->_str = val;
         }
         itr++;
     }
