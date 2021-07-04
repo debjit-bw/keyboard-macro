@@ -1,4 +1,4 @@
 #include<map>
 using namespace std;
 
-map<string, string> iostrings();
+map<string, wstring> iostrings();

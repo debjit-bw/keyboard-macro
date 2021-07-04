@@ -1,44 +1,46 @@
-#include<iostream>
-#include<map>
-#include "self.h"
+#include "headers\\tree.h"
 
 using namespace std;
 
-struct node
+int branches(node *N)
 {
-    char _char;
-    int _depth;
-    map<char, node*> _dir;
-    string _str;
-};
+    if (N->_dir.size() == 0)
+    {
+        N->_fbranches = 1;
+        return N->_fbranches;
+    }
+    else
+    {
+        map<char, node *>::iterator it = N->_dir.begin();
+        while (it != N->_dir.end())
+        {
+            N->_fbranches += branches(it->second);
+            it++;
+        }
+        if (N->_fbranches > 1)
+            N->_str = L"";
+        return N->_fbranches;
+    }
+}
 
-node* map_create(map<string, string> iolist)
+node *map_create(map<string, wstring> iolist)
 {
-    node* N0 = new node();
-    // node N1 = {};
-    // N0._dir['d'] = &N1;
-    // cout<<int(N0._char)<<endl
-    //     // <<N0._depth<<endl
-    //     // <<N0._dir.size()<<endl
-    //     // <<N0._str.length()<<endl
-    //     <<(N0._dir['c'] == NULL);
+    node *N0 = new node();
 
-    map<string, string>::iterator itr = iolist.begin();
+    map<string, wstring>::iterator itr = iolist.begin();
 
     while (itr != iolist.end())
     {
         string key = itr->first;
-        string val = itr->second;
-        node* latest_node = N0;
+        wstring val = itr->second;
+        node *latest_node = N0;
         for (int i = 0; i < key.length(); i++)
         {
             if (latest_node->_dir[key[i]] == NULL)
             {
-                // latest_node->_dir.erase(key[i]);
-                // node *empty = ;
                 latest_node->_dir[key[i]] = new node();
                 latest_node->_dir[key[i]]->_char = key[i];
-                latest_node->_dir[key[i]]->_depth = i+1;
+                latest_node->_dir[key[i]]->_depth = i + 1;
                 latest_node = latest_node->_dir[key[i]];
             }
             else
@@ -46,19 +48,18 @@ node* map_create(map<string, string> iolist)
                 latest_node = latest_node->_dir[key[i]];
             }
 
-            if (i == key.length()-1)
+            if (i < key.length())
                 latest_node->_str = val;
         }
         itr++;
     }
-    return N0;;
+    branches(N0);
+    return N0;
 }
 
-int main()
-{
-    map<string, string> iolist = iostrings();
-
-    node N0 = *map_create(iolist);
-    cout<<N0._dir['m']->_dir['a']->_dir['i']->_dir['l']->_str;
-    return 0;
-}
+// int main()
+// {
+//     map<string, wstring> iolist = iostrings();
+//     node* N0 = map_create(iolist);
+//     return 0;
+// }

@@ -1,13 +1,13 @@
-#include "self.h"
+#include "headers\\self.h"
 
-map<string, string> iostrings()
+map<string, wstring> iostrings()
 {
-    map<string, string> iolist;
-    iolist["name"] = "FirstName SecondName";
-    iolist["mail"] = "MyMailAddress@example.com";
-    iolist["mysite"] = "https://example.com";
-    iolist["scrt"] = "Some Secret Content";
-    iolist["2mail"] = "MySecondMailAddress@example.com";
+    map<string, wstring> iolist;
+    iolist["name"] = L"FirstName SecondName";
+    iolist["mail"] = L"MyMailAddress@example.com";
+    iolist["mysite"] = L"https://example.com";
+    iolist["scrt"] = L"Some Secret Content";
+    iolist["2mail"] = L"MySecondMailAddress@example.com";
 
     return iolist;
 }

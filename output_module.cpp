@@ -1,7 +1,4 @@
-#include <vector>
-#include <windows.h>
-#include <string>
-#include <iostream>
+#include "headers\\output_module.h"
 
 using namespace std;
 
@@ -18,12 +15,12 @@ void SendFormattedOutput(const wstring &str, int backs, bool will_select = false
 
     for (int i = 0; i < backs; i++)
     {
-        inp[2*i].type = INPUT_KEYBOARD;
-        inp[2*i].ki.wVk = VK_BACK;
-        inp[2*i].ki.dwFlags = KEYEVENTF_UNICODE;
+        inp[2 * i].type = INPUT_KEYBOARD;
+        inp[2 * i].ki.wVk = VK_BACK;
+        inp[2 * i].ki.dwFlags = KEYEVENTF_UNICODE;
 
-        inp[2*i + 1] = inp[2*i];
-        inp[2*i + 1].ki.dwFlags |= KEYEVENTF_KEYUP;
+        inp[2 * i + 1] = inp[2 * i];
+        inp[2 * i + 1].ki.dwFlags |= KEYEVENTF_KEYUP;
     }
 
     int i = 0, idx = 2 * backs;
@@ -70,31 +67,19 @@ void SendFormattedOutput(const wstring &str, int backs, bool will_select = false
         inp[idx].ki.wVk = VK_LSHIFT;
         inp[idx].ki.dwFlags = 0;
 
-        inp[2*keys_len - 1] = inp[idx];
-        inp[2*keys_len - 1].ki.dwFlags |= KEYEVENTF_KEYUP;
+        inp[2 * keys_len - 1] = inp[idx];
+        inp[2 * keys_len - 1].ki.dwFlags |= KEYEVENTF_KEYUP;
 
         for (int i = 0; i < str.length(); i++)
         {
-            inp[1 + idx + 2*i].type = INPUT_KEYBOARD;
-            inp[1 + idx + 2*i].ki.wVk = VK_LEFT;
-            inp[1 + idx + 2*i].ki.dwFlags = KEYEVENTF_UNICODE;
+            inp[1 + idx + 2 * i].type = INPUT_KEYBOARD;
+            inp[1 + idx + 2 * i].ki.wVk = VK_LEFT;
+            inp[1 + idx + 2 * i].ki.dwFlags = KEYEVENTF_UNICODE;
 
-            inp[1 + idx + 2*i+1] = inp[1 + idx + 2*i];
-            inp[1 + idx + 2*i+1].ki.dwFlags |= KEYEVENTF_KEYUP;
+            inp[1 + idx + 2 * i + 1] = inp[1 + idx + 2 * i];
+            inp[1 + idx + 2 * i + 1].ki.dwFlags |= KEYEVENTF_KEYUP;
         }
     }
 
     SendInput(inp.size(), &inp[0], sizeof(INPUT));
-    // for (int i = 0; i < 2*keys_len; i++)
-    // {
-    //     SendInput(1, &inp[i], sizeof(INPUT));
-    //     Sleep(1000);
-    // }
-}
-
-int main()
-{
-    Sleep(5000);
-    std::wstring str = L"\b\b\bHello";
-    SendFormattedOutput(L"something", 5, true);
 }
