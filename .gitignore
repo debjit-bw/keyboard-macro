@@ -1,6 +1,5 @@
 *.exe
-t?.*
+t?
 .vscode
-wkn.cpp
 *.txt
 *.log
