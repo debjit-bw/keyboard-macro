@@ -55,7 +55,7 @@ So you can just:
 g++ input_module.o output_module.o tree.o self.cpp core.cpp -o core.exe
 ```
 
-If you modify the other .cpp files, build the out files first, or directly include their .cpp instead of corresponding .o, whetever.
+If you modify the other .cpp files, build the out files first, or directly include their .cpp instead of corresponding .o, whatever.
 
 ---
 
